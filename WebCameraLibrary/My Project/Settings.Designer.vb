@@ -56,17 +56,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.36;Initial Catalog=Garden;Persist Security Info=True;User I"& _ 
-            "D=sa;Password=mccj.jrac")>  _
-        Public ReadOnly Property GardenConnectionString() As String
-            Get
-                Return CType(Me("GardenConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("97.72.74.222")>  _
         Public ReadOnly Property IP() As String
             Get
@@ -98,6 +87,17 @@ Namespace My
         Public ReadOnly Property Password() As String
             Get
                 Return CType(Me("Password"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=Ketchum;Initial Catalog=Garden;Integrated Security=True;Persist Secur"& _ 
+            "ity Info=True")>  _
+        Public ReadOnly Property GardenConnectionString() As String
+            Get
+                Return CType(Me("GardenConnectionString"),String)
             End Get
         End Property
     End Class

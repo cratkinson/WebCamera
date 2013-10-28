@@ -19,4 +19,11 @@ Public Class Form1
 
 
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim l As WebCameraLibrary.App = New WebCameraLibrary.App
+        pb.Image = l.GetPicture(2)
+        pb.SizeMode = PictureBoxSizeMode.Zoom
+
+    End Sub
 End Class

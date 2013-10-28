@@ -14,7 +14,7 @@
         <elementListCompartment Id="011f5e6d-8eab-4619-a956-599046608880" absoluteBounds="3.265, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.25 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.25 : 2.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CameraDBDataContext/tblWebCamera_META/tblWebCamera_META_tblWebCamera_DATA" />
       <nodes>
         <classShapeMoniker Id="4d2575bb-375f-454c-a52e-be1dfe0ea43b" />
