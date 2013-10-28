@@ -10,5 +10,17 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.1.36;Initial Catalog=Garden;Persist Security Info=True;User ID=sa;Password=mccj.jrac</Value>
     </Setting>
+    <Setting Name="IP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">97.72.74.222</Value>
+    </Setting>
+    <Setting Name="Port" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8088</Value>
+    </Setting>
+    <Setting Name="UserID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">monica63</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

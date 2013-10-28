@@ -64,6 +64,42 @@ Namespace My
                 Return CType(Me("GardenConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("97.72.74.222")>  _
+        Public ReadOnly Property IP() As String
+            Get
+                Return CType(Me("IP"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("8088")>  _
+        Public ReadOnly Property Port() As String
+            Get
+                Return CType(Me("Port"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("admin")>  _
+        Public ReadOnly Property UserID() As String
+            Get
+                Return CType(Me("UserID"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("monica63")>  _
+        Public ReadOnly Property Password() As String
+            Get
+                Return CType(Me("Password"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

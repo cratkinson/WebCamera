@@ -1,5 +1,7 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports WebCameraLibrary
+
 Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -9,5 +11,12 @@ Public Class Form1
         Dim thePic As Stream = response.GetResponseStream
         Dim theImage As Image = Image.FromStream(thePic)
         pb.Image = theImage
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim l As WebCameraLibrary.App = New WebCameraLibrary.App
+        l.PostPicture()
+
+
     End Sub
 End Class

@@ -116,6 +116,12 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebCameraLibrary\WebCameraLibrary.vbproj">
+      <Project>{5b6cdfe5-3257-4c31-8d37-4ea54d9e2c48}</Project>
+      <Name>WebCameraLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

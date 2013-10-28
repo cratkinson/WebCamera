@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Garden" Class="CameraDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.36;Initial Catalog=Garden;Persist Security Info=True;User ID=sa" SettingsObjectName="WebCameraLibrary.My.MySettings" SettingsPropertyName="GardenConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.tblWebCamera_DATA" Member="tblWebCamera_DATAs">
-    <Type Name="tblWebCamera_DATA">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CameraID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Photo" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="tblWebCamera_META_tblWebCamera_DATA" Member="tblWebCamera_META" ThisKey="CameraID" OtherKey="ID" Type="tblWebCamera_META" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblWebCamera_META" Member="tblWebCamera_METAs">
     <Type Name="tblWebCamera_META">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -17,6 +8,15 @@
       <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Camera" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="tblWebCamera_META_tblWebCamera_DATA" Member="tblWebCamera_DATAs" ThisKey="ID" OtherKey="CameraID" Type="tblWebCamera_DATA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblWebCamera_DATA" Member="tblWebCamera_DATAs">
+    <Type Name="tblWebCamera_DATA">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CameraID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Photo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="tblWebCamera_META_tblWebCamera_DATA" Member="tblWebCamera_META" ThisKey="CameraID" OtherKey="ID" Type="tblWebCamera_META" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
