@@ -5,4 +5,11 @@ Partial Public Class tblWebCamera_DATA
         Dim ms As MemoryStream = New MemoryStream(Me.Photo.ToArray)
         Return Image.FromStream(ms)
     End Function
+    Public ReadOnly Property PhotoImage As Image
+        Get
+            Dim ms As MemoryStream = New MemoryStream(Me.Photo.ToArray)
+            Return Image.FromStream(ms)
+        End Get
+    End Property
+
 End Class

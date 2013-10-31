@@ -46,7 +46,7 @@ Partial Public Class CameraDBDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.WebCameraLibrary.My.MySettings.Default.GardenConnectionString, mappingSource)
+		MyBase.New(Global.WebCameraLibrary.My.MySettings.Default.GardenConnectionString1, mappingSource)
 		OnCreated
 	End Sub
 	
