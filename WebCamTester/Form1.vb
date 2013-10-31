@@ -34,7 +34,17 @@ Public Class Form1
         For Each img In l.GetPictures
             pb.Image = img.ToImage
             pb.Refresh()
-            Thread.Sleep(2000)
+            Thread.Sleep(300)
         Next
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim i As Integer = 0
+
+        For icnt = 1 To 6
+            i += 15
+            i = i Mod 60
+        Next icnt
+
     End Sub
 End Class
