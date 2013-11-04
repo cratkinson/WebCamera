@@ -2,9 +2,9 @@
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim l As WebCameraLibrary.App = New WebCameraLibrary.App
-        bs.DataSource = l.GetPictures
-        Dim b As New Binding("Image", bs, "PictureImage")
-        pb.DataBindings.Add(b)
+        Dim theCnt As Integer = l.Count
+        Dim d As List(Of WebCameraLibrary.tblWebCamera_DATA) = l.GetPictureRange(theCnt - 95, theCnt)
+        TblWebCameraDATABindingSource.DataSource = d 'l.GetPictures
 
     End Sub
 

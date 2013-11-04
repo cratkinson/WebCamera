@@ -5,6 +5,7 @@ Imports System.Drawing
 
 Public Class App
     Private url As String = String.Empty
+    Private _recordPointer As Integer = 0
     Public Sub New()
         url = "http://" + My.Settings.IP + ":" + My.Settings.Port + "/cgi-bin/CGIProxy.fcgi?cmd=snapPicture2"
         url += "&usr=" + My.Settings.UserID
@@ -53,6 +54,16 @@ Public Class App
             Throw New Exception(ex.Message)
         End Try
     End Function
+    Function GetPictureRange(startID As Integer, endID As Integer) As List(Of tblWebCamera_DATA)
+        Try
+            Using db As CameraDBDataContext = New CameraDBDataContext
+                Return db.tblWebCamera_DATAs.Where(Function(f) f.ID >= startID And f.ID <= endID).ToList
+            End Using
+
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
     Function GetPictures() As List(Of tblWebCamera_DATA)
         Try
             Using db As CameraDBDataContext = New CameraDBDataContext
@@ -62,4 +73,13 @@ Public Class App
             Throw New Exception(ex.Message)
         End Try
     End Function
+    '-----------------------------------------------------------------------------------
+    ' Recordset Like Functions
+    '-----------------------------------------------------------------------------------
+    Function Count() As Integer
+        Using db As CameraDBDataContext = New CameraDBDataContext
+            Return db.tblWebCamera_DATAs.Count
+        End Using
+    End Function
+
 End Class

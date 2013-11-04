@@ -25,6 +25,7 @@ Partial Class Form2
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.bn = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.bs = New System.Windows.Forms.BindingSource(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
@@ -34,7 +35,6 @@ Partial Class Form2
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.bs = New System.Windows.Forms.BindingSource(Me.components)
         Me.pb = New System.Windows.Forms.PictureBox()
         Me.TblWebCameraDATABindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.bn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,7 +47,7 @@ Partial Class Form2
         'bn
         '
         Me.bn.AddNewItem = Nothing
-        Me.bn.BindingSource = Me.bs
+        Me.bn.BindingSource = Me.TblWebCameraDATABindingSource
         Me.bn.CountItem = Me.BindingNavigatorCountItem
         Me.bn.DeleteItem = Nothing
         Me.bn.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
@@ -58,7 +58,7 @@ Partial Class Form2
         Me.bn.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.bn.Name = "bn"
         Me.bn.PositionItem = Me.BindingNavigatorPositionItem
-        Me.bn.Size = New System.Drawing.Size(656, 25)
+        Me.bn.Size = New System.Drawing.Size(745, 25)
         Me.bn.TabIndex = 0
         Me.bn.Text = "nav"
         '
@@ -131,9 +131,12 @@ Partial Class Form2
         '
         'pb
         '
-        Me.pb.Location = New System.Drawing.Point(0, 28)
+        Me.pb.DataBindings.Add(New System.Windows.Forms.Binding("Image", Me.TblWebCameraDATABindingSource, "PhotoImage", True))
+        Me.pb.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pb.Location = New System.Drawing.Point(0, 25)
         Me.pb.Name = "pb"
-        Me.pb.Size = New System.Drawing.Size(656, 342)
+        Me.pb.Size = New System.Drawing.Size(745, 434)
+        Me.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pb.TabIndex = 1
         Me.pb.TabStop = False
         '
@@ -145,7 +148,7 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(656, 382)
+        Me.ClientSize = New System.Drawing.Size(745, 459)
         Me.Controls.Add(Me.pb)
         Me.Controls.Add(Me.bn)
         Me.Name = "Form2"
