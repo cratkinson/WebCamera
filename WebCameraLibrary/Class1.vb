@@ -81,5 +81,11 @@ Public Class App
             Return db.tblWebCamera_DATAs.Count
         End Using
     End Function
+    Function LastID() As Integer
+        Using db As CameraDBDataContext = New CameraDBDataContext
+            Dim q As tblWebCamera_DATA = db.tblWebCamera_DATAs.OrderByDescending(Function(f) f.ID).FirstOrDefault
 
+            Return q.ID
+        End Using
+    End Function
 End Class
