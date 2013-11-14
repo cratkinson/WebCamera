@@ -37,7 +37,7 @@ Public Class App
         Catch ex As Exception
             Throw New Exception(ex.Message)
         End Try
-       
+
     End Sub
     Function GetPicture(ID As Integer) As System.Drawing.Image
         Try
