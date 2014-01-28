@@ -39,7 +39,7 @@ Public Class App
         Catch ex As Exception
             Throw New Exception(ex.Message)
         End Try
-       
+
     End Sub
     Function GetPictureAll(ID As Integer) As tblWebCamera_DATA
         Try

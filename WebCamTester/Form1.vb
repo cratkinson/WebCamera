@@ -34,7 +34,7 @@ Public Class Form1
         For Each img In l.GetPictures
             pb.Image = img.ToImage
             pb.Refresh()
-            Thread.Sleep(300)
+            Thread.Sleep(30)
         Next
     End Sub
 
