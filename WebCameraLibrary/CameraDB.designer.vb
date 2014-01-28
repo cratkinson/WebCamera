@@ -43,65 +43,83 @@ Partial Public Class CameraDBDataContext
     End Sub
   Partial Private Sub DeletetblWebCamera_DATA(instance As tblWebCamera_DATA)
     End Sub
-  #End Region
-	
-	Public Sub New()
-		MyBase.New(Global.WebCameraLibrary.My.MySettings.Default.GardenConnectionString1, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public ReadOnly Property tblWebCamera_METAs() As System.Data.Linq.Table(Of tblWebCamera_META)
-		Get
-			Return Me.GetTable(Of tblWebCamera_META)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblWebCamera_DATAs() As System.Data.Linq.Table(Of tblWebCamera_DATA)
-		Get
-			Return Me.GetTable(Of tblWebCamera_DATA)
-		End Get
-	End Property
+    Partial Private Sub InserttblBlissWeatherStation(instance As tblBlissWeatherStation)
+    End Sub
+    Partial Private Sub UpdatetblBlissWeatherStation(instance As tblBlissWeatherStation)
+    End Sub
+    Partial Private Sub DeletetblBlissWeatherStation(instance As tblBlissWeatherStation)
+    End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New(Global.WebCameraLibrary.My.MySettings.Default.GardenConnectionString1, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public ReadOnly Property tblWebCamera_METAs() As System.Data.Linq.Table(Of tblWebCamera_META)
+        Get
+            Return Me.GetTable(Of tblWebCamera_META)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblWebCamera_DATAs() As System.Data.Linq.Table(Of tblWebCamera_DATA)
+        Get
+            Return Me.GetTable(Of tblWebCamera_DATA)()
+        End Get
+    End Property
+
+    Public ReadOnly Property tblBlissWeatherStations() As System.Data.Linq.Table(Of tblBlissWeatherStation)
+        Get
+            Return Me.GetTable(Of tblBlissWeatherStation)()
+        End Get
+    End Property
+
+    <Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.usp_BLISS_CLOSEST_TMP")> _
+    Public Function usp_BLISS_CLOSEST_TMP(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="DateTime")> ByVal dt As System.Nullable(Of Date)) As ISingleResult(Of usp_BLISS_CLOSEST_TMPResult)
+        Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod, MethodInfo), dt)
+        Return CType(result.ReturnValue, ISingleResult(Of usp_BLISS_CLOSEST_TMPResult))
+    End Function
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblWebCamera_META")>  _
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblWebCamera_META")> _
 Partial Public Class tblWebCamera_META
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _Description As String
-	
-	Private _Longitude As System.Nullable(Of Double)
-	
-	Private _Latitude As System.Nullable(Of Double)
-	
-	Private _Camera As String
-	
-	Private _tblWebCamera_DATAs As EntitySet(Of tblWebCamera_DATA)
-	
-    #Region "Extensibility Method Definitions"
+    Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+    Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+
+    Private _ID As Integer
+
+    Private _Description As String
+
+    Private _Longitude As System.Nullable(Of Double)
+
+    Private _Latitude As System.Nullable(Of Double)
+
+    Private _Camera As String
+
+    Private _tblWebCamera_DATAs As EntitySet(Of tblWebCamera_DATA)
+
+#Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
     Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
@@ -128,151 +146,151 @@ Partial Public Class tblWebCamera_META
     End Sub
     Partial Private Sub OnCameraChanged()
     End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._tblWebCamera_DATAs = New EntitySet(Of tblWebCamera_DATA)(AddressOf Me.attach_tblWebCamera_DATAs, AddressOf Me.detach_tblWebCamera_DATAs)
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="VarChar(50)")>  _
-	Public Property Description() As String
-		Get
-			Return Me._Description
-		End Get
-		Set
-			If (String.Equals(Me._Description, value) = false) Then
-				Me.OnDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._Description = value
-				Me.SendPropertyChanged("Description")
-				Me.OnDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Longitude", DbType:="Float")>  _
-	Public Property Longitude() As System.Nullable(Of Double)
-		Get
-			Return Me._Longitude
-		End Get
-		Set
-			If (Me._Longitude.Equals(value) = false) Then
-				Me.OnLongitudeChanging(value)
-				Me.SendPropertyChanging
-				Me._Longitude = value
-				Me.SendPropertyChanged("Longitude")
-				Me.OnLongitudeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Latitude", DbType:="Float")>  _
-	Public Property Latitude() As System.Nullable(Of Double)
-		Get
-			Return Me._Latitude
-		End Get
-		Set
-			If (Me._Latitude.Equals(value) = false) Then
-				Me.OnLatitudeChanging(value)
-				Me.SendPropertyChanging
-				Me._Latitude = value
-				Me.SendPropertyChanged("Latitude")
-				Me.OnLatitudeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Camera", DbType:="VarChar(50)")>  _
-	Public Property Camera() As String
-		Get
-			Return Me._Camera
-		End Get
-		Set
-			If (String.Equals(Me._Camera, value) = false) Then
-				Me.OnCameraChanging(value)
-				Me.SendPropertyChanging
-				Me._Camera = value
-				Me.SendPropertyChanged("Camera")
-				Me.OnCameraChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="tblWebCamera_META_tblWebCamera_DATA", Storage:="_tblWebCamera_DATAs", ThisKey:="ID", OtherKey:="CameraID")>  _
-	Public Property tblWebCamera_DATAs() As EntitySet(Of tblWebCamera_DATA)
-		Get
-			Return Me._tblWebCamera_DATAs
-		End Get
-		Set
-			Me._tblWebCamera_DATAs.Assign(value)
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_tblWebCamera_DATAs(ByVal entity As tblWebCamera_DATA)
-		Me.SendPropertyChanging
-		entity.tblWebCamera_META = Me
-	End Sub
-	
-	Private Sub detach_tblWebCamera_DATAs(ByVal entity As tblWebCamera_DATA)
-		Me.SendPropertyChanging
-		entity.tblWebCamera_META = Nothing
-	End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New()
+        Me._tblWebCamera_DATAs = New EntitySet(Of tblWebCamera_DATA)(AddressOf Me.attach_tblWebCamera_DATAs, AddressOf Me.detach_tblWebCamera_DATAs)
+        OnCreated()
+    End Sub
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=True, IsDbGenerated:=True)> _
+    Public Property ID() As Integer
+        Get
+            Return Me._ID
+        End Get
+        Set(value As Integer)
+            If ((Me._ID = value) _
+                        = False) Then
+                Me.OnIDChanging(value)
+                Me.SendPropertyChanging()
+                Me._ID = value
+                Me.SendPropertyChanged("ID")
+                Me.OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="VarChar(50)")> _
+    Public Property Description() As String
+        Get
+            Return Me._Description
+        End Get
+        Set(value As String)
+            If (String.Equals(Me._Description, value) = False) Then
+                Me.OnDescriptionChanging(value)
+                Me.SendPropertyChanging()
+                Me._Description = value
+                Me.SendPropertyChanged("Description")
+                Me.OnDescriptionChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Longitude", DbType:="Float")> _
+    Public Property Longitude() As System.Nullable(Of Double)
+        Get
+            Return Me._Longitude
+        End Get
+        Set(value As System.Nullable(Of Double))
+            If (Me._Longitude.Equals(value) = False) Then
+                Me.OnLongitudeChanging(value)
+                Me.SendPropertyChanging()
+                Me._Longitude = value
+                Me.SendPropertyChanged("Longitude")
+                Me.OnLongitudeChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Latitude", DbType:="Float")> _
+    Public Property Latitude() As System.Nullable(Of Double)
+        Get
+            Return Me._Latitude
+        End Get
+        Set(value As System.Nullable(Of Double))
+            If (Me._Latitude.Equals(value) = False) Then
+                Me.OnLatitudeChanging(value)
+                Me.SendPropertyChanging()
+                Me._Latitude = value
+                Me.SendPropertyChanged("Latitude")
+                Me.OnLatitudeChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Camera", DbType:="VarChar(50)")> _
+    Public Property Camera() As String
+        Get
+            Return Me._Camera
+        End Get
+        Set(value As String)
+            If (String.Equals(Me._Camera, value) = False) Then
+                Me.OnCameraChanging(value)
+                Me.SendPropertyChanging()
+                Me._Camera = value
+                Me.SendPropertyChanged("Camera")
+                Me.OnCameraChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="tblWebCamera_META_tblWebCamera_DATA", Storage:="_tblWebCamera_DATAs", ThisKey:="ID", OtherKey:="CameraID")> _
+    Public Property tblWebCamera_DATAs() As EntitySet(Of tblWebCamera_DATA)
+        Get
+            Return Me._tblWebCamera_DATAs
+        End Get
+        Set(value As EntitySet(Of tblWebCamera_DATA))
+            Me._tblWebCamera_DATAs.Assign(value)
+        End Set
+    End Property
+
+    Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+    Protected Overridable Sub SendPropertyChanging()
+        If ((Me.PropertyChangingEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+        End If
+    End Sub
+
+    Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+        If ((Me.PropertyChangedEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End If
+    End Sub
+
+    Private Sub attach_tblWebCamera_DATAs(ByVal entity As tblWebCamera_DATA)
+        Me.SendPropertyChanging()
+        entity.tblWebCamera_META = Me
+    End Sub
+
+    Private Sub detach_tblWebCamera_DATAs(ByVal entity As tblWebCamera_DATA)
+        Me.SendPropertyChanging()
+        entity.tblWebCamera_META = Nothing
+    End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblWebCamera_DATA")>  _
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblWebCamera_DATA")> _
 Partial Public Class tblWebCamera_DATA
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _CameraID As Integer
-	
-	Private _Date As System.Nullable(Of Date)
-	
-	Private _Photo As System.Data.Linq.Binary
-	
-	Private _tblWebCamera_META As EntityRef(Of tblWebCamera_META)
-	
-    #Region "Extensibility Method Definitions"
+    Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+    Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+
+    Private _ID As Integer
+
+    Private _CameraID As Integer
+
+    Private _Date As System.Nullable(Of Date)
+
+    Private _Photo As System.Data.Linq.Binary
+
+    Private _tblWebCamera_META As EntityRef(Of tblWebCamera_META)
+
+#Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
     Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
@@ -295,126 +313,642 @@ Partial Public Class tblWebCamera_DATA
     End Sub
     Partial Private Sub OnPhotoChanged()
     End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._tblWebCamera_META = CType(Nothing, EntityRef(Of tblWebCamera_META))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CameraID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property CameraID() As Integer
-		Get
-			Return Me._CameraID
-		End Get
-		Set
-			If ((Me._CameraID = value)  _
-						= false) Then
-				If Me._tblWebCamera_META.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnCameraIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CameraID = value
-				Me.SendPropertyChanged("CameraID")
-				Me.OnCameraIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Date", Storage:="_Date", DbType:="DateTime")>  _
-	Public Property [Date]() As System.Nullable(Of Date)
-		Get
-			Return Me._Date
-		End Get
-		Set
-			If (Me._Date.Equals(value) = false) Then
-				Me.OnDateChanging(value)
-				Me.SendPropertyChanging
-				Me._Date = value
-				Me.SendPropertyChanged("[Date]")
-				Me.OnDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Photo", DbType:="Image", UpdateCheck:=UpdateCheck.Never)>  _
-	Public Property Photo() As System.Data.Linq.Binary
-		Get
-			Return Me._Photo
-		End Get
-		Set
-			If (Object.Equals(Me._Photo, value) = false) Then
-				Me.OnPhotoChanging(value)
-				Me.SendPropertyChanging
-				Me._Photo = value
-				Me.SendPropertyChanged("Photo")
-				Me.OnPhotoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="tblWebCamera_META_tblWebCamera_DATA", Storage:="_tblWebCamera_META", ThisKey:="CameraID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property tblWebCamera_META() As tblWebCamera_META
-		Get
-			Return Me._tblWebCamera_META.Entity
-		End Get
-		Set
-			Dim previousValue As tblWebCamera_META = Me._tblWebCamera_META.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._tblWebCamera_META.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._tblWebCamera_META.Entity = Nothing
-					previousValue.tblWebCamera_DATAs.Remove(Me)
-				End If
-				Me._tblWebCamera_META.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.tblWebCamera_DATAs.Add(Me)
-					Me._CameraID = value.ID
-				Else
-					Me._CameraID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("tblWebCamera_META")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New()
+        Me._tblWebCamera_META = CType(Nothing, EntityRef(Of tblWebCamera_META))
+        OnCreated()
+    End Sub
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=True, IsDbGenerated:=True)> _
+    Public Property ID() As Integer
+        Get
+            Return Me._ID
+        End Get
+        Set(value As Integer)
+            If ((Me._ID = value) _
+                        = False) Then
+                Me.OnIDChanging(value)
+                Me.SendPropertyChanging()
+                Me._ID = value
+                Me.SendPropertyChanged("ID")
+                Me.OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CameraID", DbType:="Int NOT NULL", IsPrimaryKey:=True)> _
+    Public Property CameraID() As Integer
+        Get
+            Return Me._CameraID
+        End Get
+        Set(value As Integer)
+            If ((Me._CameraID = value) _
+                        = False) Then
+                If Me._tblWebCamera_META.HasLoadedOrAssignedValue Then
+                    Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+                End If
+                Me.OnCameraIDChanging(value)
+                Me.SendPropertyChanging()
+                Me._CameraID = value
+                Me.SendPropertyChanged("CameraID")
+                Me.OnCameraIDChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Date", Storage:="_Date", DbType:="DateTime")> _
+    Public Property [Date]() As System.Nullable(Of Date)
+        Get
+            Return Me._Date
+        End Get
+        Set(value As System.Nullable(Of Date))
+            If (Me._Date.Equals(value) = False) Then
+                Me.OnDateChanging(value)
+                Me.SendPropertyChanging()
+                Me._Date = value
+                Me.SendPropertyChanged("[Date]")
+                Me.OnDateChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Photo", DbType:="Image", UpdateCheck:=UpdateCheck.Never)> _
+    Public Property Photo() As System.Data.Linq.Binary
+        Get
+            Return Me._Photo
+        End Get
+        Set(value As System.Data.Linq.Binary)
+            If (Object.Equals(Me._Photo, value) = False) Then
+                Me.OnPhotoChanging(value)
+                Me.SendPropertyChanging()
+                Me._Photo = value
+                Me.SendPropertyChanged("Photo")
+                Me.OnPhotoChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="tblWebCamera_META_tblWebCamera_DATA", Storage:="_tblWebCamera_META", ThisKey:="CameraID", OtherKey:="ID", IsForeignKey:=True)> _
+    Public Property tblWebCamera_META() As tblWebCamera_META
+        Get
+            Return Me._tblWebCamera_META.Entity
+        End Get
+        Set(value As tblWebCamera_META)
+            Dim previousValue As tblWebCamera_META = Me._tblWebCamera_META.Entity
+            If ((Object.Equals(previousValue, value) = False) _
+                        OrElse (Me._tblWebCamera_META.HasLoadedOrAssignedValue = False)) Then
+                Me.SendPropertyChanging()
+                If ((previousValue Is Nothing) _
+                            = False) Then
+                    Me._tblWebCamera_META.Entity = Nothing
+                    previousValue.tblWebCamera_DATAs.Remove(Me)
+                End If
+                Me._tblWebCamera_META.Entity = value
+                If ((value Is Nothing) _
+                            = False) Then
+                    value.tblWebCamera_DATAs.Add(Me)
+                    Me._CameraID = value.ID
+                Else
+                    Me._CameraID = CType(Nothing, Integer)
+                End If
+                Me.SendPropertyChanged("tblWebCamera_META")
+            End If
+        End Set
+    End Property
+
+    Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+    Protected Overridable Sub SendPropertyChanging()
+        If ((Me.PropertyChangingEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+        End If
+    End Sub
+
+    Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+        If ((Me.PropertyChangedEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End If
+    End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblBlissWeatherStation")> _
+Partial Public Class tblBlissWeatherStation
+    Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+    Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+
+    Private _Date As Date
+
+    Private _TMP_Outside As System.Nullable(Of Single)
+
+    Private _TMP_Inside As System.Nullable(Of Single)
+
+    Private _TMP_Maximum As System.Nullable(Of Single)
+
+    Private _TMP_Minimum As System.Nullable(Of Single)
+
+    Private _TMP_DewPoint As System.Nullable(Of Single)
+
+    Private _TMP_WindChill As System.Nullable(Of Single)
+
+    Private _HUM_Outside As System.Nullable(Of Integer)
+
+    Private _HUM_Inside As System.Nullable(Of Integer)
+
+    Private _WIND_Average As System.Nullable(Of Integer)
+
+    Private _WIND_High As System.Nullable(Of Integer)
+
+    Private _WIND_Direction As String
+
+    Private _Rain As System.Nullable(Of Single)
+
+    Private _Barometer As System.Nullable(Of Single)
+
+    Private _Period As System.Nullable(Of Integer)
+
+    Private _SolarRadiation As System.Nullable(Of Single)
+
+    Private _UVIndex As System.Nullable(Of Single)
+
+    Private _TMP_Greenhouse As System.Nullable(Of Single)
+
+    Private _HUM_Greenhouse As System.Nullable(Of Single)
+
+    Private _WIND_Degree As System.Nullable(Of Integer)
+
+#Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnDateChanged()
+    End Sub
+    Partial Private Sub OnTMP_OutsideChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_OutsideChanged()
+    End Sub
+    Partial Private Sub OnTMP_InsideChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_InsideChanged()
+    End Sub
+    Partial Private Sub OnTMP_MaximumChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_MaximumChanged()
+    End Sub
+    Partial Private Sub OnTMP_MinimumChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_MinimumChanged()
+    End Sub
+    Partial Private Sub OnTMP_DewPointChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_DewPointChanged()
+    End Sub
+    Partial Private Sub OnTMP_WindChillChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_WindChillChanged()
+    End Sub
+    Partial Private Sub OnHUM_OutsideChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnHUM_OutsideChanged()
+    End Sub
+    Partial Private Sub OnHUM_InsideChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnHUM_InsideChanged()
+    End Sub
+    Partial Private Sub OnWIND_AverageChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnWIND_AverageChanged()
+    End Sub
+    Partial Private Sub OnWIND_HighChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnWIND_HighChanged()
+    End Sub
+    Partial Private Sub OnWIND_DirectionChanging(value As String)
+    End Sub
+    Partial Private Sub OnWIND_DirectionChanged()
+    End Sub
+    Partial Private Sub OnRainChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnRainChanged()
+    End Sub
+    Partial Private Sub OnBarometerChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnBarometerChanged()
+    End Sub
+    Partial Private Sub OnPeriodChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnPeriodChanged()
+    End Sub
+    Partial Private Sub OnSolarRadiationChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnSolarRadiationChanged()
+    End Sub
+    Partial Private Sub OnUVIndexChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnUVIndexChanged()
+    End Sub
+    Partial Private Sub OnTMP_GreenhouseChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnTMP_GreenhouseChanged()
+    End Sub
+    Partial Private Sub OnHUM_GreenhouseChanging(value As System.Nullable(Of Single))
+    End Sub
+    Partial Private Sub OnHUM_GreenhouseChanged()
+    End Sub
+    Partial Private Sub OnWIND_DegreeChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnWIND_DegreeChanged()
+    End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New()
+        OnCreated()
+    End Sub
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Date", Storage:="_Date", DbType:="DateTime NOT NULL", IsPrimaryKey:=True)> _
+    Public Property [Date]() As Date
+        Get
+            Return Me._Date
+        End Get
+        Set(value As Date)
+            If ((Me._Date = value) _
+                        = False) Then
+                Me.OnDateChanging(value)
+                Me.SendPropertyChanging()
+                Me._Date = value
+                Me.SendPropertyChanged("[Date]")
+                Me.OnDateChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_Outside", DbType:="Real")> _
+    Public Property TMP_Outside() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_Outside
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_Outside.Equals(value) = False) Then
+                Me.OnTMP_OutsideChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_Outside = value
+                Me.SendPropertyChanged("TMP_Outside")
+                Me.OnTMP_OutsideChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_Inside", DbType:="Real")> _
+    Public Property TMP_Inside() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_Inside
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_Inside.Equals(value) = False) Then
+                Me.OnTMP_InsideChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_Inside = value
+                Me.SendPropertyChanged("TMP_Inside")
+                Me.OnTMP_InsideChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_Maximum", DbType:="Real")> _
+    Public Property TMP_Maximum() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_Maximum
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_Maximum.Equals(value) = False) Then
+                Me.OnTMP_MaximumChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_Maximum = value
+                Me.SendPropertyChanged("TMP_Maximum")
+                Me.OnTMP_MaximumChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_Minimum", DbType:="Real")> _
+    Public Property TMP_Minimum() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_Minimum
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_Minimum.Equals(value) = False) Then
+                Me.OnTMP_MinimumChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_Minimum = value
+                Me.SendPropertyChanged("TMP_Minimum")
+                Me.OnTMP_MinimumChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_DewPoint", DbType:="Real")> _
+    Public Property TMP_DewPoint() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_DewPoint
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_DewPoint.Equals(value) = False) Then
+                Me.OnTMP_DewPointChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_DewPoint = value
+                Me.SendPropertyChanged("TMP_DewPoint")
+                Me.OnTMP_DewPointChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_WindChill", DbType:="Real")> _
+    Public Property TMP_WindChill() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_WindChill
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_WindChill.Equals(value) = False) Then
+                Me.OnTMP_WindChillChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_WindChill = value
+                Me.SendPropertyChanged("TMP_WindChill")
+                Me.OnTMP_WindChillChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HUM_Outside", DbType:="Int")> _
+    Public Property HUM_Outside() As System.Nullable(Of Integer)
+        Get
+            Return Me._HUM_Outside
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._HUM_Outside.Equals(value) = False) Then
+                Me.OnHUM_OutsideChanging(value)
+                Me.SendPropertyChanging()
+                Me._HUM_Outside = value
+                Me.SendPropertyChanged("HUM_Outside")
+                Me.OnHUM_OutsideChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HUM_Inside", DbType:="Int")> _
+    Public Property HUM_Inside() As System.Nullable(Of Integer)
+        Get
+            Return Me._HUM_Inside
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._HUM_Inside.Equals(value) = False) Then
+                Me.OnHUM_InsideChanging(value)
+                Me.SendPropertyChanging()
+                Me._HUM_Inside = value
+                Me.SendPropertyChanged("HUM_Inside")
+                Me.OnHUM_InsideChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WIND_Average", DbType:="Int")> _
+    Public Property WIND_Average() As System.Nullable(Of Integer)
+        Get
+            Return Me._WIND_Average
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._WIND_Average.Equals(value) = False) Then
+                Me.OnWIND_AverageChanging(value)
+                Me.SendPropertyChanging()
+                Me._WIND_Average = value
+                Me.SendPropertyChanged("WIND_Average")
+                Me.OnWIND_AverageChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WIND_High", DbType:="Int")> _
+    Public Property WIND_High() As System.Nullable(Of Integer)
+        Get
+            Return Me._WIND_High
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._WIND_High.Equals(value) = False) Then
+                Me.OnWIND_HighChanging(value)
+                Me.SendPropertyChanging()
+                Me._WIND_High = value
+                Me.SendPropertyChanged("WIND_High")
+                Me.OnWIND_HighChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WIND_Direction", DbType:="VarChar(5)")> _
+    Public Property WIND_Direction() As String
+        Get
+            Return Me._WIND_Direction
+        End Get
+        Set(value As String)
+            If (String.Equals(Me._WIND_Direction, value) = False) Then
+                Me.OnWIND_DirectionChanging(value)
+                Me.SendPropertyChanging()
+                Me._WIND_Direction = value
+                Me.SendPropertyChanged("WIND_Direction")
+                Me.OnWIND_DirectionChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Rain", DbType:="Real")> _
+    Public Property Rain() As System.Nullable(Of Single)
+        Get
+            Return Me._Rain
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._Rain.Equals(value) = False) Then
+                Me.OnRainChanging(value)
+                Me.SendPropertyChanging()
+                Me._Rain = value
+                Me.SendPropertyChanged("Rain")
+                Me.OnRainChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Barometer", DbType:="Real")> _
+    Public Property Barometer() As System.Nullable(Of Single)
+        Get
+            Return Me._Barometer
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._Barometer.Equals(value) = False) Then
+                Me.OnBarometerChanging(value)
+                Me.SendPropertyChanging()
+                Me._Barometer = value
+                Me.SendPropertyChanged("Barometer")
+                Me.OnBarometerChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Period", DbType:="Int")> _
+    Public Property Period() As System.Nullable(Of Integer)
+        Get
+            Return Me._Period
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._Period.Equals(value) = False) Then
+                Me.OnPeriodChanging(value)
+                Me.SendPropertyChanging()
+                Me._Period = value
+                Me.SendPropertyChanged("Period")
+                Me.OnPeriodChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SolarRadiation", DbType:="Real")> _
+    Public Property SolarRadiation() As System.Nullable(Of Single)
+        Get
+            Return Me._SolarRadiation
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._SolarRadiation.Equals(value) = False) Then
+                Me.OnSolarRadiationChanging(value)
+                Me.SendPropertyChanging()
+                Me._SolarRadiation = value
+                Me.SendPropertyChanged("SolarRadiation")
+                Me.OnSolarRadiationChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UVIndex", DbType:="Real")> _
+    Public Property UVIndex() As System.Nullable(Of Single)
+        Get
+            Return Me._UVIndex
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._UVIndex.Equals(value) = False) Then
+                Me.OnUVIndexChanging(value)
+                Me.SendPropertyChanging()
+                Me._UVIndex = value
+                Me.SendPropertyChanged("UVIndex")
+                Me.OnUVIndexChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP_Greenhouse", DbType:="Real")> _
+    Public Property TMP_Greenhouse() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP_Greenhouse
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP_Greenhouse.Equals(value) = False) Then
+                Me.OnTMP_GreenhouseChanging(value)
+                Me.SendPropertyChanging()
+                Me._TMP_Greenhouse = value
+                Me.SendPropertyChanged("TMP_Greenhouse")
+                Me.OnTMP_GreenhouseChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HUM_Greenhouse", DbType:="Real")> _
+    Public Property HUM_Greenhouse() As System.Nullable(Of Single)
+        Get
+            Return Me._HUM_Greenhouse
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._HUM_Greenhouse.Equals(value) = False) Then
+                Me.OnHUM_GreenhouseChanging(value)
+                Me.SendPropertyChanging()
+                Me._HUM_Greenhouse = value
+                Me.SendPropertyChanged("HUM_Greenhouse")
+                Me.OnHUM_GreenhouseChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WIND_Degree", DbType:="Int")> _
+    Public Property WIND_Degree() As System.Nullable(Of Integer)
+        Get
+            Return Me._WIND_Degree
+        End Get
+        Set(value As System.Nullable(Of Integer))
+            If (Me._WIND_Degree.Equals(value) = False) Then
+                Me.OnWIND_DegreeChanging(value)
+                Me.SendPropertyChanging()
+                Me._WIND_Degree = value
+                Me.SendPropertyChanged("WIND_Degree")
+                Me.OnWIND_DegreeChanged()
+            End If
+        End Set
+    End Property
+
+    Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+    Protected Overridable Sub SendPropertyChanging()
+        If ((Me.PropertyChangingEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+        End If
+    End Sub
+
+    Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+        If ((Me.PropertyChangedEvent Is Nothing) _
+                    = False) Then
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End If
+    End Sub
+End Class
+
+Partial Public Class usp_BLISS_CLOSEST_TMPResult
+
+    Private _date As Date
+
+    Private _TMP As System.Nullable(Of Single)
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="date", Storage:="_date", DbType:="DateTime NOT NULL")> _
+    Public Property [date]() As Date
+        Get
+            Return Me._date
+        End Get
+        Set(value As Date)
+            If ((Me._date = value) _
+                        = False) Then
+                Me._date = value
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TMP", DbType:="Real")> _
+    Public Property TMP() As System.Nullable(Of Single)
+        Get
+            Return Me._TMP
+        End Get
+        Set(value As System.Nullable(Of Single))
+            If (Me._TMP.Equals(value) = False) Then
+                Me._TMP = value
+            End If
+        End Set
+    End Property
 End Class

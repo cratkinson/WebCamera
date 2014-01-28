@@ -19,4 +19,35 @@
       <Association Name="tblWebCamera_META_tblWebCamera_DATA" Member="tblWebCamera_META" ThisKey="CameraID" OtherKey="ID" Type="tblWebCamera_META" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblBlissWeatherStation" Member="tblBlissWeatherStations">
+    <Type Name="tblBlissWeatherStation">
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TMP_Outside" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_Inside" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_Maximum" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_Minimum" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_DewPoint" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_WindChill" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="HUM_Outside" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HUM_Inside" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WIND_Average" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WIND_High" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WIND_Direction" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Rain" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Barometer" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Period" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolarRadiation" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="UVIndex" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TMP_Greenhouse" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="HUM_Greenhouse" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="WIND_Degree" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.usp_BLISS_CLOSEST_TMP" Method="usp_BLISS_CLOSEST_TMP">
+    <Parameter Name="dt" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="usp_BLISS_CLOSEST_TMPResult">
+      <Column Name="date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TMP" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

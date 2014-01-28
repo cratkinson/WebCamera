@@ -2,6 +2,8 @@
 Imports System.IO
 Imports System.Linq
 Imports System.Drawing
+Imports LinqKit.PredicateBuilder
+
 
 Public Class App
     Private url As String = String.Empty
@@ -39,6 +41,15 @@ Public Class App
         End Try
        
     End Sub
+    Function GetPictureAll(ID As Integer) As tblWebCamera_DATA
+        Try
+            Using db As CameraDBDataContext = New CameraDBDataContext
+                Return db.tblWebCamera_DATAs.SingleOrDefault(Function(f) f.ID = ID)
+            End Using
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Function GetPicture(ID As Integer) As System.Drawing.Image
         Try
             Using db As CameraDBDataContext = New CameraDBDataContext
@@ -57,7 +68,11 @@ Public Class App
     Function GetPictureRange(startID As Integer, endID As Integer) As List(Of tblWebCamera_DATA)
         Try
             Using db As CameraDBDataContext = New CameraDBDataContext
-                Return db.tblWebCamera_DATAs.Where(Function(f) f.ID >= startID And f.ID <= endID).ToList
+                Dim p = LinqKit.PredicateBuilder.True(Of tblWebCamera_DATA)()
+                p = p.And(Function(f) f.ID >= startID)
+                p = p.And(Function(f) f.ID <= endID)
+
+                Return db.tblWebCamera_DATAs.Where(p).ToList
             End Using
 
         Catch ex As Exception
@@ -72,6 +87,12 @@ Public Class App
         Catch ex As Exception
             Throw New Exception(ex.Message)
         End Try
+    End Function
+    Function GetTemperature(thePhoto As tblWebCamera_DATA) As Decimal
+        Dim theDate As Date = thePhoto.Date
+        Using db As CameraDBDataContext = New CameraDBDataContext
+            Return db.usp_BLISS_CLOSEST_TMP(theDate).FirstOrDefault.TMP
+        End Using
     End Function
     '-----------------------------------------------------------------------------------
     ' Recordset Like Functions

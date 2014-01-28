@@ -14,12 +14,18 @@
         <elementListCompartment Id="011f5e6d-8eab-4619-a956-599046608880" absoluteBounds="3.265, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.25 : 2.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 2.38544840494792); (3.25 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CameraDBDataContext/tblWebCamera_META/tblWebCamera_META_tblWebCamera_DATA" />
       <nodes>
         <classShapeMoniker Id="4d2575bb-375f-454c-a52e-be1dfe0ea43b" />
         <classShapeMoniker Id="961d3df6-a17e-4043-aecd-235d81a0e4d0" />
       </nodes>
     </associationConnector>
+    <classShape Id="e7a25fcc-3e29-4964-a752-c6e04faefb96" absoluteBounds="0.75, 3.375, 2, 4.6554182942708326">
+      <DataClassMoniker Name="/CameraDBDataContext/tblBlissWeatherStation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="722de9e5-cbe4-4525-9dd2-4f1760eb62c0" absoluteBounds="0.765, 3.835, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -25,7 +25,7 @@ Partial Class Form2
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.bn = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.bs = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TblWebCameraDATABindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
@@ -35,13 +35,16 @@ Partial Class Form2
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.bs = New System.Windows.Forms.BindingSource(Me.components)
         Me.pb = New System.Windows.Forms.PictureBox()
-        Me.TblWebCameraDATABindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.bn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.bn.SuspendLayout()
+        CType(Me.TblWebCameraDATABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TblWebCameraDATABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'bn
@@ -58,9 +61,13 @@ Partial Class Form2
         Me.bn.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.bn.Name = "bn"
         Me.bn.PositionItem = Me.BindingNavigatorPositionItem
-        Me.bn.Size = New System.Drawing.Size(745, 25)
+        Me.bn.Size = New System.Drawing.Size(814, 25)
         Me.bn.TabIndex = 0
         Me.bn.Text = "nav"
+        '
+        'TblWebCameraDATABindingSource
+        '
+        Me.TblWebCameraDATABindingSource.DataSource = GetType(WebCameraLibrary.tblWebCamera_DATA)
         '
         'BindingNavigatorCountItem
         '
@@ -135,20 +142,46 @@ Partial Class Form2
         Me.pb.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pb.Location = New System.Drawing.Point(0, 25)
         Me.pb.Name = "pb"
-        Me.pb.Size = New System.Drawing.Size(745, 434)
+        Me.pb.Size = New System.Drawing.Size(814, 500)
         Me.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pb.TabIndex = 1
         Me.pb.TabStop = False
         '
-        'TblWebCameraDATABindingSource
+        'Button1
         '
-        Me.TblWebCameraDATABindingSource.DataSource = GetType(WebCameraLibrary.tblWebCamera_DATA)
+        Me.Button1.Location = New System.Drawing.Point(236, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(317, 0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 3
+        Me.Button2.Text = "Last 24H"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(398, 0)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 4
+        Me.Button3.Text = "Last Snap"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(745, 459)
+        Me.ClientSize = New System.Drawing.Size(814, 525)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.pb)
         Me.Controls.Add(Me.bn)
         Me.Name = "Form2"
@@ -156,9 +189,9 @@ Partial Class Form2
         CType(Me.bn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.bn.ResumeLayout(False)
         Me.bn.PerformLayout()
+        CType(Me.TblWebCameraDATABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bs, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pb, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TblWebCameraDATABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -176,4 +209,7 @@ Partial Class Form2
     Friend WithEvents bs As System.Windows.Forms.BindingSource
     Friend WithEvents pb As System.Windows.Forms.PictureBox
     Friend WithEvents TblWebCameraDATABindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class
